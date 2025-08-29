@@ -31,21 +31,27 @@ def test_token_scopes():
     print(f"✅ Token scopes: {scopes}")
     
     # Test repository access
-    repos_response = requests.get(
-        'https://api.github.com/orgs/Memcrypt-io/repos', 
-        headers=headers,
-        params={'type': 'all', 'per_page': 10}
-    )
+    org_name = input("Enter organization name to test (or press Enter to skip): ").strip()
     
-    if repos_response.status_code == 200:
-        repos = repos_response.json()
-        print(f"✅ Found {len(repos)} repositories!")
-        for repo in repos[:3]:
-            print(f"   - {repo['name']}")
-        return True
+    if org_name:
+        repos_response = requests.get(
+            f'https://api.github.com/orgs/{org_name}/repos', 
+            headers=headers,
+            params={'type': 'all', 'per_page': 10}
+        )
+        
+        if repos_response.status_code == 200:
+            repos = repos_response.json()
+            print(f"✅ Found {len(repos)} repositories in {org_name}!")
+            for repo in repos[:3]:
+                print(f"   - {repo['name']}")
+            return True
+        else:
+            print(f"❌ Repository access failed for {org_name}: {repos_response.status_code}")
+            return False
     else:
-        print(f"❌ Repository access failed: {repos_response.status_code}")
-        return False
+        print("⏭️  Skipping organization test")
+        return True
 
 if __name__ == '__main__':
     test_token_scopes()

@@ -1,0 +1,16 @@
+{
+  "source_org": "your-source-org",
+  "dest_org": "your-dest-org",
+  "source_token": "",
+  "dest_token": "",
+  "include_private": false,
+  "clone_dir": "./temp_clones",
+  "workers": 3,
+  "repo_prefix": "backup-",
+  "include_date_prefix": false,
+  "exclude_repos": [
+    "test-repo",
+    "archive-repo"
+  ],
+  "include_only": []
+}

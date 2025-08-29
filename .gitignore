@@ -134,3 +134,20 @@ oauth_config.json
 temp_clones/
 backup.log
 *.git/
+
+# Sensitive files
+*_token.txt
+*.key
+*.pem
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
